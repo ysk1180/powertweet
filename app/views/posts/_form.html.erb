@@ -11,27 +11,17 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :content %>
-    <%= form.text_field :content %>
+    <%= form.text_area :content, class:'form-control', rows:"3" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :power %>
-    <%= form.text_field :power %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :picture %>
-    <%= form.text_field :picture %>
+    <%= form.text_area :power, class:'form-control', rows:"3" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "パワーツイート！", class:"btn btn-primary" %>
   </div>
 <% end %>
