@@ -19,6 +19,6 @@ module Powertweet
     end
     config.time_zone = 'Tokyo'
 
-    config.serve_static_assets = true
+    config.assets.paths << config.root.join("node_modules")
   end
 end
