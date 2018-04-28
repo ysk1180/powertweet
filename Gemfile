@@ -59,3 +59,5 @@ gem 'bcrypt', '3.1.11'
 # Twitterログイン
 gem 'omniauth'
 gem 'omniauth-twitter'
+
+gem 'devise'

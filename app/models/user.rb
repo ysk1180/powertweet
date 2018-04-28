@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
    #find_or_create_by()は()の中の条件のものが見つければ取得し、なければ新しく作成するというメソッド
    self.find_or_create_by(provider: provider,uid: uid) do |user|
-     user.username = name
+     user.nickname = nickname
      user.image_url = image_url
    end
   end
