@@ -18,5 +18,7 @@ module Powertweet
       g.stylesheets false
     end
     config.time_zone = 'Tokyo'
+
+    config.serve_static_assets = true
   end
 end
