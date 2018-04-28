@@ -17,7 +17,6 @@ module Powertweet
       g.helper false
       g.stylesheets false
     end
-    config.i18n.default_locale = :ja
     config.time_zone = 'Tokyo'
   end
 end
