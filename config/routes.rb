@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'auth/:provider/callback' => 'users#create'#このpathを通して認証が行われる。
   resources :posts
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: "posts#index"
 end
