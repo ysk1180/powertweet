@@ -73,17 +73,45 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:content, :power, :user_id, :picture)
+      params.require(:post).permit(:content, :power, :user_id, :picture, :kind)
     end
 
     def make_picture
+      sentense = ""
+      content = @post.power
+      n = (content.length / 15).floor + 1
+      n.times do |i|
+        s_num = i * 15
+        f_num = s_num + 14
+        range =  Range.new(s_num,f_num)
+        sentense += content.slice(range)
+        sentense += "\n" if n != i+1
+      end
       font = ".fonts/ipag.ttc"
-      image = MiniMagick::Image.open("fire.jpg")
+      case @post.kind
+      when "thunder" then
+        base = "thunder.png"
+        color = "white"
+      when "muscle" then
+        base = "muscle.png"
+        color = "black"
+      when "cat" then
+        base = "cat.png"
+        color = "white"
+      when "love" then
+        base = "love.png"
+        color = "white"
+      else
+        base = "fire.png"
+        color = "white"
+      end
+      image = MiniMagick::Image.open(base)
       image.combine_options do |i|
         i.font font
+        i.fill color
         i.gravity 'center'
-        i.pointsize 30
-        i.draw "text 0,-5 '#{@post.power}'"
+        i.pointsize 45
+        i.draw "text 0,0 '#{sentense}'"
       end
       storage = Fog::Storage.new(
         provider: 'AWS',
