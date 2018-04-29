@@ -13,17 +13,19 @@
 
   <div class="form-group">
     <%= form.label :content %>
-    <%= form.text_area :content, class:'form-control', rows:"3" %>
+    <%= form.text_area :content, class:'form-control', rows:"6" %>
   </div>
 
   <div class="form-group">
     <%= form.label :power %>
-    <%= form.text_area :power, class:'form-control', rows:"3" %>
+    <%= form.text_area :power, class:'form-control', rows:"6" %>
+    <small class="text-muted">改行は半角スペースに変換されます</small>
   </div>
 
   <div class="form-group">
     <%= form.label :kind %>
     <%= form.select :kind, [["ランダム","muscle"],["ファイヤーツイート","fire"],["サンダーツイート","thunder"],["マッスルツイート","muscle"],["キャットツイート","cat"],["LOVEツイート","love"]], {}, {class: "form-control"} %>
+    <small class="text-muted">それぞれどんな画像が出るかはパワーツイートしてからのお楽しみです</small>
   </div>
 
   <div class="actions">

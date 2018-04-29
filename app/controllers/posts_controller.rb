@@ -78,14 +78,27 @@ class PostsController < ApplicationController
 
     def make_picture
       sentense = ""
-      content = @post.power
-      n = (content.length / 15).floor + 1
-      n.times do |i|
-        s_num = i * 15
-        f_num = s_num + 14
-        range =  Range.new(s_num,f_num)
-        sentense += content.slice(range)
-        sentense += "\n" if n != i+1
+      content = @post.power.gsub(/\r\n|\r|\n/," ")
+      if content.length <= 50 then
+        n = (content.length / 10).floor + 1
+        n.times do |i|
+          s_num = i * 10
+          f_num = s_num + 9
+          range =  Range.new(s_num,f_num)
+          sentense += content.slice(range)
+          sentense += "\n" if n != i+1
+        end
+        pointsize = 60
+      else
+        n = (content.length / 15).floor + 1
+        n.times do |i|
+          s_num = i * 15
+          f_num = s_num + 14
+          range =  Range.new(s_num,f_num)
+          sentense += content.slice(range)
+          sentense += "\n" if n != i+1
+        end
+        pointsize = 45
       end
       font = ".fonts/ipag.ttc"
       case @post.kind
@@ -110,7 +123,7 @@ class PostsController < ApplicationController
         i.font font
         i.fill color
         i.gravity 'center'
-        i.pointsize 45
+        i.pointsize pointsize
         i.draw "text 0,0 '#{sentense}'"
       end
       storage = Fog::Storage.new(
