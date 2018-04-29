@@ -31,7 +31,7 @@ class PostsController < ApplicationController
     make_picture
     respond_to do |format|
       if @post.save
-        @client.update("#{@post.content}\nhttps://powertweet.herokuapp.com/posts/#{@post.id}\r")
+        @client.update("#{@post.content}\n#POWERTWEET\nhttps://powertweet.herokuapp.com/posts/#{@post.id}\r")
         format.html { redirect_to new_post_path, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
