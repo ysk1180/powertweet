@@ -11,6 +11,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    render top_index_path
   end
 
   # GET /posts/new
@@ -30,8 +31,8 @@ class PostsController < ApplicationController
     make_picture
     respond_to do |format|
       if @post.save
-        @client.update("#{@post.content}\nhttps://powertweet.herokuapp.com/posts/\r")
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        @client.update("#{@post.content}\nhttps://powertweet.herokuapp.com/posts/#{@post_id}\r")
+        format.html { redirect_to new_post_path, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new }
