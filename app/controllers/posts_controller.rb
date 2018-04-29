@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :twitter_client, only: [:create]
 
   # GET /posts
   # GET /posts.json
@@ -26,8 +27,10 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    make_picture
     respond_to do |format|
       if @post.save
+        @client.update("#{@post.content}\nhttps://powertweet.herokuapp.com/posts/\r")
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
@@ -71,4 +74,44 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:content, :power, :user_id, :picture)
     end
+
+    def make_picture
+      font = ".fonts/ipag.ttc"
+      image = MiniMagick::Image.open("fire.jpg")
+      image.combine_options do |i|
+        i.font font
+        i.gravity 'center'
+        i.pointsize 30
+        i.draw "text 0,-5 '#{@post.power}'"
+      end
+      storage = Fog::Storage.new(
+        provider: 'AWS',
+        aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+        aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
+        region: 'ap-northeast-1'
+      )
+      case Rails.env
+        when 'production'
+          bucket = storage.directories.get('powertweet-production')
+          png_path = 'images/' + @post.user_id.to_s + '.png'
+          image_uri = image.path
+          file = bucket.files.create(key: png_path, public: true, body: open(image_uri))
+          @post.picture = 'https://s3-ap-northeast-1.amazonaws.com/powertweet-production' + "/" + png_path
+        when 'development'
+          bucket = storage.directories.get('powertweet-development')
+          png_path = 'images/' + @post.user_id.to_s + '.png'
+          image_uri = image.path
+          file = bucket.files.create(key: png_path, public: true, body: open(image_uri))
+          @post.picture = 'https://s3-ap-northeast-1.amazonaws.com/powertweet-development' + "/" + png_path
+      end
+    end
+
+    def twitter_client
+      @client = Twitter::REST::Client.new do |config|
+      config.consumer_key = ENV['TWITTER_API_KEY']
+      config.consumer_secret = ENV['TWITTER_API_SECRET']
+      config.access_token = ENV['TWITTER_ACCESS_TOKEN']
+      config.access_token_secret = ENV['TWITTER_ACCESS_SECRET']
+    end
+  end
 end
