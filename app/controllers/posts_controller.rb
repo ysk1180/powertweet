@@ -1,6 +1,10 @@
 class PostsController < ApplicationController
   before_action :twitter_client, only: [:create]
 
+  def show
+    render top_index_path
+  end
+
   def new
     @post = Post.new
   end
