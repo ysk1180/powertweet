@@ -1,8 +1,9 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: [:show]
   before_action :twitter_client, only: [:create]
 
   def show
-    render top_index_path
+    render 'top/index'
   end
 
   def new
@@ -22,6 +23,10 @@ class PostsController < ApplicationController
   end
 
   private
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
   def post_params
     params.require(:post).permit(:content, :power, :user_id, :picture, :kind)
   end
