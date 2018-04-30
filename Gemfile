@@ -61,3 +61,6 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 
 gem 'twitter'
+
+# 日本語化
+gem 'rails-i18n'
