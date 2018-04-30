@@ -13,6 +13,8 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
+    next_id = Post.last.id.to_s + 1
+    make_picture(next_id)
     if @post.save
       make_picture
       @client.update("#{@post.content}\n#POWERTWEET\nhttps://powertweet.herokuapp.com/posts/#{@post.id}\r")
@@ -31,7 +33,7 @@ class PostsController < ApplicationController
     params.require(:post).permit(:content, :power, :user_id, :picture, :kind)
   end
 
-  def make_picture
+  def make_picture(next_id)
     sentense = ""
     content = @post.power.gsub(/\r\n|\r|\n/," ")
     if content.length <= 50 then
@@ -90,13 +92,13 @@ class PostsController < ApplicationController
     case Rails.env
       when 'production'
         bucket = storage.directories.get('powertweet-production')
-        png_path = 'images/' + @post.id.to_s + '.png'
+        png_path = 'images/' + next_id + '.png'
         image_uri = image.path
         file = bucket.files.create(key: png_path, public: true, body: open(image_uri))
         @post.picture = 'https://s3-ap-northeast-1.amazonaws.com/powertweet-production' + "/" + png_path
       when 'development'
         bucket = storage.directories.get('powertweet-development')
-        png_path = 'images/' + @post.id.to_s + '.png'
+        png_path = 'images/' + next_id + '.png'
         image_uri = image.path
         file = bucket.files.create(key: png_path, public: true, body: open(image_uri))
         @post.picture = 'https://s3-ap-northeast-1.amazonaws.com/powertweet-development' + "/" + png_path
