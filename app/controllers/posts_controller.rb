@@ -16,7 +16,6 @@ class PostsController < ApplicationController
     next_id = Post.last.id + 1
     make_picture(next_id)
     if @post.save
-      make_picture
       @client.update("#{@post.content}\n#POWERTWEET\nhttps://powertweet.herokuapp.com/posts/#{@post.id}\r")
       redirect_to new_post_path, notice: 'パワーツイート完了！次は別の種類のパワーツイートをどうぞ！'
     else
