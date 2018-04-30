@@ -10,7 +10,7 @@ module ApplicationHelper
     end
     twitter_card[:title] = "POWERTWEET"
     twitter_card[:card] = 'summary_large_image'
-    twitter_card[:description] = '文字を書いた画像を自動生成し、力強いツイートができるサービスです。'
+    twitter_card[:description] = '文字が入った画像を自動生成し、力強いツイートができるサービスです。'
     twitter_card
   end
 end
