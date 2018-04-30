@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  get 'top/index'
   get 'auth/:provider/callback' => 'users#create'#このpathを通して認証が行われる。
-  resources :posts
+  resources :posts, only: [:new, :create]
   root to: "top#index"
 end
