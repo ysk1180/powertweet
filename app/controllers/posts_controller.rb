@@ -13,7 +13,8 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    next_id = Post.last.id.to_s + 1
+    binding.pry
+    next_id = Post.last.id + 1
     make_picture(next_id)
     if @post.save
       make_picture
