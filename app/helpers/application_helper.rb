@@ -6,7 +6,7 @@ module ApplicationHelper
       twitter_card[:image] = "https://s3-ap-northeast-1.amazonaws.com/powertweet-production/images/#{post.user_id}.png"
     else
       twitter_card[:url] = 'https://powertweet.herokuapp.com/'
-      twitter_card[:image] = "https://raw.githubusercontent.com/ysk1180/powertweet/master/app/assets/images/top.png"
+      twitter_card[:image] = "https://raw.githubusercontent.com/ysk1180/powertweet/master/app/assets/images/twittertop.png"
     end
     twitter_card[:title] = "POWERTWEET"
     twitter_card[:card] = 'summary_large_image'
