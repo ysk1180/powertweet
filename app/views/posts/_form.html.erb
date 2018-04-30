@@ -12,13 +12,13 @@
   <% end %>
 
   <div class="form-group">
-    <%= form.label :content %>
+    <%= form.label 'Twitter本文の内容' %>
     <%= form.text_area :content, id: 'content', class:'form-control', rows:"6" %>
     <p id="content_check">0文字 / max 120文字</p>
   </div>
 
   <div class="form-group">
-    <%= form.label :power %>
+    <%= form.label '画像内の内容' %>
     <%= form.text_area :power, id: 'power', class:'form-control', rows:"6" %>
     <p id="power_check">0文字 / max 90文字</p>
     <small class="text-muted">改行は半角スペースに変換されます</small>
