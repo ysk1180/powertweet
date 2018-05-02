@@ -56,7 +56,7 @@ class PostsController < ApplicationController
       end
       pointsize = 45
     end
-    font = ".fonts/ipag.ttc"
+    font = ".fonts/Jiyucho.ttf"
     case @post.kind
     when "thunder" then
       base = "thunder.png"
@@ -69,6 +69,33 @@ class PostsController < ApplicationController
       color = "white"
     when "love" then
       base = "love.png"
+      color = "white"
+    when "shock" then
+      base = "shock.png"
+      color = "white"
+    when "fuck" then
+      base = "fuck.png"
+      color = "white"
+    when "lion" then
+      base = "lion.png"
+      color = "white"
+    when "balloon" then
+      base = "balloon.png"
+      color = "black"
+    when "happy" then
+      base = "happy.png"
+      color = "black"
+    when "old" then
+      base = "old.png"
+      color = "white"
+    when "people" then
+      base = "people.png"
+      color = "white"
+    when "star" then
+      base = "star.png"
+      color = "white"
+    when "sunset" then
+      base = "sunset.png"
       color = "white"
     else
       base = "fire.png"
