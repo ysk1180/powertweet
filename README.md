@@ -1,24 +1,26 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サービス名
+POWERTWEET  
+https://powertweet.herokuapp.com/
 
-Things you may want to cover:
+## リリース日
+2018年4月30日
 
-* Ruby version
+## 概要
+文字が入った画像を自動生成して、気軽に力強いツイート（パワーツイート）ができるサービス
 
-* System dependencies
+## 想定している利用者
+Twitterで気軽に目立つツイートがしたい方
 
-* Configuration
+## 参考
+POWERTWEETの進化系：BigTweet  
+https://bigtweet.herokuapp.com/
 
-* Database creation
+## バージョン
+Ruby：2.5.1  
+Rails：5.2.0  
+PostgreSQL：10.1
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 作者
+@ysk1180
