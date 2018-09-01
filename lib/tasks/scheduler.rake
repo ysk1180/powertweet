@@ -14,7 +14,6 @@ task update_feed: :environment do
     type: 'text',
     text: 'テスト'
   }
-  binding.pry
   response = client.multicast(user_ids, message)
   'OK'
 end
