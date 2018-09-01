@@ -64,3 +64,5 @@ gem 'twitter'
 
 # 日本語化
 gem 'rails-i18n'
+
+gem 'line-bot-api'
