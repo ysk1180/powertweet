@@ -21,5 +21,8 @@ module Powertweet
 
     # 日本語化
     config.i18n.default_locale = :ja
+
+    # For Heroku
+    config.assets.initialize_on_precompile = false
   end
 end
