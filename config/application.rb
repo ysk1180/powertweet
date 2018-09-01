@@ -21,5 +21,7 @@ module Powertweet
 
     # 日本語化
     config.i18n.default_locale = :ja
+
+    config.assets.compile = false
   end
 end
