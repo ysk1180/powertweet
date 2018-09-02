@@ -17,6 +17,7 @@ task update_feed: :environment do
   since_id = nil
   today = Time.zone.today.strftime('%Y-%m-%d')
   yesterday = (Time.zone.today - 1).strftime('%Y-%m-%d')
+  line_id = 'U96a2790cfba425cb1e422d6f00c3a877'
   targets = Url.where(line_id: line_id).pluck(:url)
   content = ''
   if targets.present?

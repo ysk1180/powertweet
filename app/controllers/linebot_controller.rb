@@ -50,9 +50,13 @@ class LinebotController < ApplicationController
             end
           when /.*(リスト).*/
             urls = Url.where(line_id: line_id).pluck(:url)
-            content = "登録されているURLはこちらです。\n"
-            urls.each.with_index(1) do |url, i|
-              content = "#{content}#{i}. #{url}\n"
+            if urls.present?
+              content = "登録されているURLはこちらです。\n"
+              urls.each.with_index(1) do |url, i|
+                content = "#{content}#{i}. #{url}\n"
+              end
+            else
+              content= 'URLを登録していないよ〜'
             end
           when /.*(今).*/
             client_t = Twitter::REST::Client.new do |config|
