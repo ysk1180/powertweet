@@ -83,7 +83,7 @@ class LinebotController < ApplicationController
                 content = "#{content}#{i}. #{url}\n"
               end
             end
-            content = 'シェアされたツイートはなかったよ〜' if content.blank?
+            content = '昨日の朝7時から今日の朝7時までにシェアされたツイートはなかったよ〜' if content.blank?
           else
             content = "＜使い方＞\n・URLの追加：「追加→追加したいURL」\n・URLの削除：「削除→削除したいURL」\n・URLの確認：「リスト」\n・前日の朝7時〜当日の朝7時での検索結果：「今」"
           end
