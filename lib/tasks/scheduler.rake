@@ -18,14 +18,13 @@ task update_feed: :environment do
   since_id = nil
   today = Time.zone.today.strftime('%Y-%m-%d')
   yesterday = (Time.zone.today - 1).strftime('%Y-%m-%d')
-  # line_id = 'U96a2790cfba425cb1e422d6f00c3a877'
-  line_ids = Url.all.pluck(:line_id)
-  line_id.each do |line_id|
+  line_ids = Url.all.pluck(:line_id).uniq
+  line_ids.each do |line_id|
     targets = Url.where(line_id: line_id).pluck(:url)
     content = ''
     if targets.present?
       targets.each do |target|
-        search = "url:#{target.tr('-', '+')} since:2018-08-26_07:00:00_JST until:#{today}_17:00:00_JST"
+        search = "url:#{target.tr('-', '+')} since:#{yesterday}_07:00:00_JST until:#{today}_07:00:00_JST"
         tweets = client_t.search(search, count: 10, result_type: 'recent', exclude: 'retweets', since_id: since_id)
         urls = []
         tweets.take(10).each do |tw|
@@ -38,12 +37,11 @@ task update_feed: :environment do
           content = "#{content}#{i}. #{url}\n"
         end
       end
-      user_id = 'U96a2790cfba425cb1e422d6f00c3a877'
       message = {
         type: 'text',
         text: content
       }
-      response = client.push_message(user_id, message)
+      response = client.push_message(line_id, message)
       p response
     end
   end

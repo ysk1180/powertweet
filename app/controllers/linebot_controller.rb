@@ -71,7 +71,7 @@ class LinebotController < ApplicationController
             content = ''
             if targets.present?
               targets.each do |target|
-                search = "url:#{target.tr('-', '+')} since:2018-08-26_07:00:00_JST until:#{today}_17:00:00_JST"
+                search = "url:#{target.tr('-', '+')} since:#{yesterday}_07:00:00_JST until:#{today}_07:00:00_JST"
                 tweets = client_t.search(search, count: 10, result_type: 'recent', exclude: 'retweets', since_id: since_id)
                 urls = []
                 tweets.take(10).each do |tw|
