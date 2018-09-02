@@ -21,7 +21,6 @@ task update_feed: :environment do
   line_id = 'U96a2790cfba425cb1e422d6f00c3a877'
   targets = Url.where(line_id: line_id).pluck(:url)
   content = ''
-  Rails.logger.fatal targets
   if targets.present?
     targets.each do |target|
       search = "url:#{target.tr('-', '+')} since:2018-08-26_07:00:00_JST until:#{today}_17:00:00_JST"
@@ -37,14 +36,13 @@ task update_feed: :environment do
         content = "#{content}#{i}. #{url}\n"
       end
     end
-    Rails.logger.fatal content
     user_id = 'U96a2790cfba425cb1e422d6f00c3a877'
     message = {
       type: 'text',
       text: content
     }
     response = client.push_message(user_id, message)
-
+    p response
   end
   'OK'
 end
