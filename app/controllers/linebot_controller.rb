@@ -51,10 +51,12 @@ class LinebotController < ApplicationController
           when /.*(リスト).*/
             urls = Url.where(line_id: line_id).pluck(:url)
             if urls.present?
-              content = "登録されているURLはこちらです。\n"
+              before = "登録されているURLはこちらです。\n"
+              after = ''
               urls.each.with_index(1) do |url, i|
-                content = "#{content}#{i}. #{url}\n"
+                after = "#{after}#{i}. #{url}\n"
               end
+              content = before + after
             else
               content= 'URLを登録していないよ〜'
             end
