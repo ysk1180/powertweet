@@ -36,13 +36,13 @@ task update_feed: :environment do
         content = "#{content}#{i}. #{url}\n"
       end
     end
-
-    user_ids = ['U96a2790cfba425cb1e422d6f00c3a877']
+    user_id = 'U96a2790cfba425cb1e422d6f00c3a877'
     message = {
       type: 'text',
       text: content
     }
-    response = client.multicast(user_ids, message)
+    response = client.push_message(user_id, message)
+
   end
   'OK'
 end
