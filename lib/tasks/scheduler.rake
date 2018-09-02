@@ -3,6 +3,7 @@
 desc 'This task is called by the Heroku scheduler add-on'
 task update_feed: :environment do
   require 'line/bot' # gem 'line-bot-api'
+  require 'twitter'
 
   client ||= Line::Bot::Client.new do |config|
     config.channel_secret = ENV['LINE_CHANNEL_SECRET']
