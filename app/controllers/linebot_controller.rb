@@ -69,24 +69,21 @@ class LinebotController < ApplicationController
             yesterday = (Time.zone.today - 1).strftime('%Y-%m-%d')
             targets = Url.where(line_id: line_id).pluck(:url)
             content = ''
-            if targets.present?
-              targets.each do |target|
-                search = "url:#{target.tr('-', '+')} since:#{yesterday}_07:00:00_JST until:#{today}_07:00:00_JST"
-                tweets = client_t.search(search, count: 10, result_type: 'recent', exclude: 'retweets', since_id: since_id)
-                urls = []
-                tweets.take(10).each do |tw|
-                  screen_name = tw.user.screen_name
-                  id = tw.id
-                  urls << "https://twitter.com/#{screen_name}/status/#{id}"
-                end
-                urls.each.with_index(1) do |url, i|
-                  content = "#{content}< #{target} をシェアするツイート＞\n" if i == 1
-                  content = "#{content}#{i}. #{url}\n"
-                end
+            targets.each do |target|
+              search = "url:#{target.tr('-', '+')} since:#{yesterday}_07:00:00_JST until:#{today}_07:00:00_JST"
+              tweets = client_t.search(search, count: 10, result_type: 'recent', exclude: 'retweets', since_id: since_id)
+              urls = []
+              tweets.take(10).each do |tw|
+                screen_name = tw.user.screen_name
+                id = tw.id
+                urls << "https://twitter.com/#{screen_name}/status/#{id}"
               end
-            else
-              content = 'シェアされたツイートはなかったよ〜'
+              urls.each.with_index(1) do |url, i|
+                content = "#{content}< #{target} をシェアするツイート＞\n" if i == 1
+                content = "#{content}#{i}. #{url}\n"
+              end
             end
+            content = 'シェアされたツイートはなかったよ〜' if content.blank?
           else
             content = "＜使い方＞\n・URLの追加：「追加→追加したいURL」\n・URLの削除：「削除→削除したいURL」\n・URLの確認：「リスト」\n・前日の朝7時〜当日の朝7時での検索結果：「今」"
           end
