@@ -9,7 +9,7 @@ task mizuki_notice: :environment do
     config.channel_token = ENV['LINE_CHANNEL_TOKEN_MIZUKI']
   end
 
-  mes = ['大好きだよ', '愛してるよ', 'みーたん天使！', 'バブバブ', 'ちゅーーーーーー！', '早くいちゃいちゃしよー！', 'I love you!', '天使ちゃん！', 'You are angel!'].sample
+  mes = ['大好きだよ', '愛してるよ', 'みーたん天使！', 'バブバブ', 'ちゅーーーーーー！', '早くいちゃいちゃしよー！', 'I love you!', '天使ちゃん！', 'You are angel!', '大当たり！(☝ ՞ਊ ՞)☝ｷｴｴｴｴｴ', 'ウホウホ'].sample
 
   message = {
     type: 'text',
