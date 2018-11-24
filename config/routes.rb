@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   root to: "top#index"
 
   post '/callback' => 'linebot#callback'
+
+  post 'read/callback' => 'read_users#callback'
 end
