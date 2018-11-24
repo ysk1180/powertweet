@@ -18,7 +18,7 @@ class ReadUsersController < ApplicationController
         word = "毎晩10時にブログ記事を送るよ。\n毎日読んで知識定着！"
         message = {
           type: 'text',
-          text: push
+          text: word
         }
         client.reply_message(event['replyToken'], message)
         # LINEお友達追された場合（機能②）
