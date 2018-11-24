@@ -8,7 +8,8 @@ task :read_blog => :environment do
   }
 
   mes = [
-    '今日も一日お疲れさま',
+    '今日も一日お疲れさま.
+    ',
     'おつかれ〜',
     '今日もいい仕事したね〜'
   ].sample
@@ -34,7 +35,7 @@ task :read_blog => :environment do
   user_ids = ReadUser.all.pluck(:line_id)
   message = {
     type: 'text',
-    text: "#{mes}\n今日読むブログ記事はコチラ！\n毎日読んで知識を定着させよう。\n#{blog}"
+    text: "#{mes}\n今日読むブログ記事はコチラ↓\n#{blog}\n毎日読んで知識を定着させよう！"
   }
 
   response = client.multicast(user_ids, message)
