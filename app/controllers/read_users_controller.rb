@@ -15,7 +15,7 @@ class ReadUsersController < ApplicationController
       case event
         # メッセージが送信された場合の対応（機能①）
       when Line::Bot::Event::Message
-        word = "毎晩10時にブログ記事を送るよ。\n毎日読んで知識定着！"
+        word = "毎晩21:30にブログ記事を送るよ。\n毎日読んで知識定着！"
         message = {
           type: 'text',
           text: word

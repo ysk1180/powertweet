@@ -8,8 +8,7 @@ task :read_blog => :environment do
   }
 
   mes = [
-    '今日も一日お疲れさま.
-    ',
+    '今日も一日お疲れさま。',
     'おつかれ〜',
     '今日もいい仕事したね〜'
   ].sample
