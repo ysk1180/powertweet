@@ -30,7 +30,8 @@ task :read_blog => :environment do
     'https://ysk-pro.hatenablog.com/entry/teaming',
     'https://ysk-pro.hatenablog.com/entry/teamgeek',
     'https://ysk-pro.hatenablog.com/entry/tcp',
-    'https://ysk-pro.hatenablog.com/entry/figure'
+    'https://ysk-pro.hatenablog.com/entry/figure',
+    'https://ysk-pro.hatenablog.com/entry/api'
   ].sample
 
   user_ids = ReadUser.all.pluck(:line_id)
