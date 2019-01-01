@@ -54,7 +54,7 @@ task mizuki_notice_23: :environment do
 
   message = {
     type: 'text',
-    text: "みーたん、もう11時だよー。\n今日のお薬のまだ飲んでなかったらやばいでござるよ。\n#{mes}"
+    text: "みーたん、もう11時だよー。\nおやすみぃ〜\n#{mes}"
   }
   line_id = "Ubf9f353de2dca66dd235666b7014b4bc"
   response = client.push_message(line_id, message)
