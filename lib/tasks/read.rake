@@ -33,7 +33,10 @@ task :read_blog => :environment do
     'https://ysk-pro.hatenablog.com/entry/figure',
     'https://ysk-pro.hatenablog.com/entry/api',
     'https://ysk-pro.hatenablog.com/entry/agile',
-    'https://ysk-pro.hatenablog.com/entry/database-design'
+    'https://ysk-pro.hatenablog.com/entry/database-design',
+    'https://ysk-pro.hatenablog.com/entry/sql-expert',
+    'https://ysk-pro.hatenablog.com/entry/effective-ruby',
+    'https://ysk-pro.hatenablog.com/entry/readable-code'
   ].sample
 
   user_ids = ReadUser.all.pluck(:line_id)
