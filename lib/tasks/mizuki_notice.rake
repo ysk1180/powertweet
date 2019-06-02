@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 desc 'This task is called by the Heroku scheduler add-on'
-task mizuki_notice_22: :environment do
+task mizuki_notice_20: :environment do
   require 'line/bot' # gem 'line-bot-api'
 
   client ||= Line::Bot::Client.new do |config|
@@ -21,11 +21,13 @@ task mizuki_notice_22: :environment do
     'You are angel!',
     '大当たり！キエエエエエ',
     'ウホウホ',
+    'みーたんしゅきしゅき',
+    'みーたんみーたん',
   ].sample
 
   message = {
     type: 'text',
-    text: "みーたん、10時だよ(^^)\nお薬飲もうねー！\n#{mes}"
+    text: "みーたん、8時だよ(^^)\nお薬飲もうねー！\n#{mes}"
   }
   line_id = "Ubf9f353de2dca66dd235666b7014b4bc"
   response = client.push_message(line_id, message)
